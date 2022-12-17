@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900');
+	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;700&family=Merriweather:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root{
+	  /* Font family */
+	  --font-family-base: 'Noto Sans SC','Inter', -apple-system, BlinkMacSystemFont,
+	    'Helvetica Neue', Arial, sans-serif;
+	  --font-family-monospace: 'IBM Plex Mono', Menlo, monospace;
+	  --font-family-heading: 'Merriweather', -apple-system, BlinkMacSystemFont,
+	    'Helvetica Neue', Arial, sans-serif;
+
+	  /* Font color */
+	  --font-color-base: var(--gray-7);
+	  --font-color-muted: var(--gray-6);
+	  --font-color-heading: var(--gray-8);
+	  --font-color-heading3: var(--gray-7);
+	  --font-color-bright: var(--gray-9);
+	  --font-color-hero-heading: var(--gray-0);
+
+	  /*link*/
+	  --link: #4371f1;
+	  --link-hover-color: #f1f2fd;
+	}
+	*,
+	*::before,
+	*::after {
+	  box-sizing: border-box;
+	}
+
+	html {
+	  font-family: var(--font-family-base);
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+
+	  line-height: 1.6;
+	  font-size: 16px;
+	  font-weight: normal;
+	  font-kerning: normal;
+	}
+
+	body {
+	  margin: 0;
+	  padding: 0;
+	  /*background: var(--background-color);*/
+	}
+
+	a {
+	  color: var(--link);
+	  text-decoration: none;
+	}
+/*	a:hover{
+		color: var(--link-hover-color); 
+	}*/
+}
+
+@layer components{
+    h1.uicomp{
+       font-family: 'Noto Sans SC';
+       font-weight: 100;
+   }
+   .header{
+       @apply flex flex-col md:flex-row px-5 py-3 justify-between  bg-slate-100;
+   }
+/*    .header > div{ 
+       @apply mb-1;
+    }*/
+/*== ==*/
+   .brand {
+       font-weight: 100;
+       @apply flex text-gray-600 text-2xl;
+   }
+   .split {
+       @apply after:content-[''] after:h-full after:mx-2 after:w-[1px] after:bg-gray-800;
+   }
+   .brand--siteurl  {
+     @apply hover:text-gray-600;
+   }
+/*== ==*/
+   .nav{
+       @apply text-xl md:text-2xl font-thin;
+   }
+   .nav__item {
+       @apply text-gray-700 mx-2 pt-2 hover:font-light;
+     }
+   .nav__item.is-active {
+       @apply text-black font-normal;
+       /*color: #000;*/
+       /* text-decoration: underline; */
+       /* font-weight: 500; */
+       border-bottom: #111 3px solid;
+   }
+
+}
