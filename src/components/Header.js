@@ -3,9 +3,7 @@ import React from 'react';
 let Header = ({ theme, onUpdateTheme }) => {
 
   return (
-    <div class="">
-      <h1 className="uicomp">Header </h1>
-      <header className="header flex flex-col md:flex-row px-5 py-3 justify-between  bg-slate-100 ">
+      <header className="header flex flex-col md:flex-row px-5 py-3 justify-between w-full  bg-gray-100 ">
         {/* <div className="content bg-white w-full flex justify-between"> */}
           <div className="hd--brand flex-none mx-auto  mb-1 md:items-start md:mx-0">
           <Brand></Brand>
@@ -18,17 +16,6 @@ let Header = ({ theme, onUpdateTheme }) => {
           </div>          
         {/* </div> */}
       </header>
-      <h1 className="uicomp">Brand</h1>
-      <Brand></Brand>
-
-      <h1 className="uicomp">Nav</h1>
-      <Nav></Nav>
-
-      <h1 className="uicomp">Social</h1>
-      <Social></Social>
-      <h1 className="uicomp">Footer</h1>
-      <Footer></Footer>
-    </div>
   );
 }
 
@@ -101,12 +88,3 @@ const Social = () => {
 //     </svg>
 //   );
 // };
-
-export const Footer = () => {
-  return(
-    <footer className="footer border-t-[1px]">
-      <span className="siteurl">Nakeman.cn</span> 2022 Build by <a href="">Gatsby</a> and <a href="">Tailwind</a>.
-    </footer>
-
-  )
-}
