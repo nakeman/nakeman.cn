@@ -1,0 +1,58 @@
+
+ .index{
+        font-family: var(--font-family-base);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+  
+        line-height: 1.6;
+        font-size: 16px;
+        font-weight: 300;
+        font-kerning: normal;
+ }
+
+ .hero {
+    /* padding: 1rem 0 0;
+    position: relative;
+    overflow: hidden; */
+  }
+
+.headline {
+    font-size: 2.4rem;
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--font-color-heading);
+  }
+
+
+  .description {
+    -webkit-font-smoothing: antialiased;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--font-color-base);
+    /* font-weight: 500; */
+  }
+  
+  .description a:hover {
+    text-decoration: underline;
+  }
+
+  p {
+    @apply pb-3;
+  }
+
+  /* Blockquote */
+
+blockquote {
+    margin: 1rem 0;
+    border-left: 6px solid #000;
+    margin-left: 0;
+    padding: 1.5rem;
+    /* background: var(--blockquote-background);
+    border-radius: var(--border-radius); */
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  

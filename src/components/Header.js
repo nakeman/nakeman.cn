@@ -1,20 +1,13 @@
 import React from 'react';
+import './Header.css';
 
 let Header = ({ theme, onUpdateTheme }) => {
 
   return (
-      <header className="header flex flex-col md:flex-row px-5 py-3 justify-between w-full  bg-gray-100 ">
-        {/* <div className="content bg-white w-full flex justify-between"> */}
-          <div className="hd--brand flex-none mx-auto  mb-1 md:items-start md:mx-0">
+      <header className="header">
           <Brand></Brand>
-          </div>
-          <div className="hd--nav flex-none  mb-1 mx-auto md:items-start md:mx-0">
-            <Nav />
-          </div>
-          <div className="hd--social mx-auto  mb-1 md:ml-auto md:mr-1">
+          <Nav />
           <Social></Social>
-          </div>          
-        {/* </div> */}
       </header>
   );
 }
@@ -37,12 +30,12 @@ export const Brand = () => {
 
 const Nav = () => {
   return(
-    <nav className="nav flex">
-      <ul class="flex  nav__list">
-        <li><a class="nav__item" href="/">文章</a></li>
-        <li><a class="nav__item is-active" href="/blog/" aria-current="page">作品</a></li>
-        <li><a class="nav__item" href="/talks/">简历</a></li>
-        <li><a class="nav__item" href="/projects/">关于</a></li>
+    <nav className="nav flex flex-none  mb-1 mx-auto md:items-start md:mx-0">
+      <ul class="flex navlist">
+        <li><a class="navlist--item" href="/">文章</a></li>
+        <li><a class="navlist--item is-active" href="/blog/" aria-current="page">作品</a></li>
+        <li><a class="navlist--item" href="/talks/">简历</a></li>
+        <li><a class="navlist--item" href="/projects/">关于</a></li>
       </ul>
     </nav>
   )
@@ -50,7 +43,7 @@ const Nav = () => {
 
 const Social = () => {
   return(
-    <div className="social flex items-center  justify-between h-full">
+    <div className="social flex items-center  justify-between h-full  mx-auto  mb-1 md:ml-auto md:mr-1">
       <a class="social__item mx-1 text-gray-600 hover:text-black" href="/">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
@@ -75,16 +68,3 @@ const Social = () => {
     </div>
   )
 }
-
-// const Douban = ({ size = "256", color="#228a31", ...other }) => {
-//   return (
-//     <svg width={size} height={size}   {...other}>
-//       <path
-//         d="M204.508 49.25H51.492v18.549h153.016V49.25zm-37.115 138.951 9.441-32.541h18.232V81.791H60.933v73.869h17.906l9.767 32.541H46.933v18.549h162.133v-18.549h-41.673zm-83.345-51.09V100.34h87.903v36.771H84.048zm64.462 50.765h-41.021l-9.767-32.216h60.23l-9.442 32.216z"
-//         fillRule="evenodd"
-//         clipRule="evenodd"
-//         fill={color}
-//       />
-//     </svg>
-//   );
-// };

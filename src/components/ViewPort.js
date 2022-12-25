@@ -7,7 +7,7 @@ import * as React from "react"
  */
 const Viewport = ({children}) => {
     return(
-        <div class="flex flex-col justify-center items-center h-screen">{children}</div>
+        <div class="flex flex-col justify-between items-center h-screen ">{children}</div>
     )
 }
 

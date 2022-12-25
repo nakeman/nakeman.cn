@@ -12,9 +12,9 @@ const PageLayout = ({children}) =>{
     
     return(
         <Viewport>
-            <div class="h-20 w-full"><Header /></div>
-            <main class="flex flex-1 w-full">{children}</main>
-            <div class="h-20 w-full"><Footer/></div>
+            <div class="w-full bg-gray-100 "><Header /></div>
+            <main class="flex  w-full">{children}</main>
+            <div class="w-full mt-auto"><Footer/></div>
         </Viewport>
 
     )
