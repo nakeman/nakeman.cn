@@ -5,8 +5,10 @@
   "version": "0.1.0",
   "author": "Kemin <keminlau@hotmail.com>",
   "dependencies": {
+    "@mdx-js/react": "^2.2.1",
     "gatsby": "^5.0.0",
     "gatsby-plugin-image": "^3.0.0",
+    "gatsby-plugin-mdx": "^5.3.1",
     "gatsby-plugin-sharp": "^5.0.0",
     "gatsby-source-filesystem": "^5.0.0",
     "gatsby-transformer-sharp": "^5.0.0",

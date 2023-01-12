@@ -16,7 +16,16 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-postcss',
+    `gatsby-plugin-sharp`,
+    "gatsby-plugin-netlify",
     `gatsby-plugin-image`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -24,8 +33,12 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    "gatsby-plugin-netlify",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blogposts`,
+        path: `${__dirname}/content/`,
+      },
+    },
   ],
 }

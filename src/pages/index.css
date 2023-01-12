@@ -12,6 +12,11 @@
    font-kerning: normal;
  }
 
+ a:hover h3 {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+}
+
  /** herox ********************************/
  .herox {
     padding: 1rem 0 0;
@@ -94,11 +99,11 @@ a.postcard:hover,h3 {
   color: var(--font-color-bright);
 }
 
-a.post:hover h3,
+/* a.post:hover h3,
 a.postcard:hover h3 {
   text-decoration-line: underline;
   text-decoration-thickness: 2px;
-}
+} */
 
 a.post h3 {
   margin: 0;
@@ -140,6 +145,8 @@ a.post time {
 
 /******* featured post **/
 
+/******* project list**/
+
 div.link a{
-  @apply p-2 font-mono text-xs border rounded-[2px] text-gray-500 hover:border-black;
+  @apply p-2 mr-1 font-mono text-sm border rounded-[5px] text-gray-800 hover:border-black;
 }
