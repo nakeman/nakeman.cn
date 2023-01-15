@@ -21,12 +21,6 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -38,6 +32,19 @@ module.exports = {
       options: {
         name: `blogposts`,
         path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 600,
+            },
+          },
+        ],
       },
     },
   ],

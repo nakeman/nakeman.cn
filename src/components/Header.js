@@ -31,7 +31,7 @@ export const Brand = () => {
 const Nav = () => {
   return(
     <nav className="nav flex flex-none  mb-1 mx-auto md:items-start md:mx-0">
-      <ul class="flex navlist">
+      <ul class="flex navlist list-none">
         <li><a class="navlist--item" href="/">文章</a></li>
         <li><a class="navlist--item is-active" href="/blog/" aria-current="page">作品</a></li>
         <li><a class="navlist--item" href="/talks/">简历</a></li>

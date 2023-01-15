@@ -85,7 +85,7 @@
 		--background-color: #fff;
 		--card-background-color: var(--gray-0);
 		--button-background-color: var(--gray-05);
-		--marker: var(--pink);
+		--marker: var(--orange);
 		--link: var(--indigo);
 		--link-hover-color: var(--indigo-muted);
 		--navbar: var(--gray-1);
@@ -142,4 +142,40 @@
 		color: var(--link-hover-color); 
 	}*/
 }
+
+@layer components{
+	/***** blogpost *********** */
+	div.post-sidebar-card ul
+	 {
+		-webkit-font-smoothing: auto;
+		line-height: 1.625;
+		margin-top: 0;
+		margin-bottom: 1.5rem;
+
+		padding-left: 1.5rem;
+		list-style-type: disc;
+		@apply text-sm text-gray-600;
+	}
+
+	div.post-sidebar-card li {
+		line-height: 1.5;
+		margin-bottom: 0.5rem;
+		padding-left: 0.25rem;
+	}
+
+	div.post-sidebar-card li::marker {
+		font-size: 1.1rem;
+		line-height: 1;
+		color: var(--marker);
+	}
+
+	div.post-sidebar-card  h2 {
+		@apply mb-2 text-sm font-semibold font-mono;
+	}
+
+	div.post-sidebar-card a{
+		@apply p-2 mr-1 font-mono text-sm border rounded-[5px] text-gray-800 hover:border-black;
+	  }
+}
+
 

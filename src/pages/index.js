@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import PageLayout from "../components/PageLayout"
 import Seo from "../components/Seo"
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
+import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 import './index.css'
 import { graphql } from "gatsby"
+import { projectsList } from '../common/projectdata'
 
 const IndexPage = ({data}) =>{
 
   const [repos, setRepos] = useState([])
-  useEffect(async () => {
-    try {
-      const res = await fetch('https://api.github.com/users/nakeman/repos?per_page=100');
-      const data = await res.json();
-      setRepos(data);
-    }      
-    catch(err)
-    {
-      console.log(err)
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch('https://api.github.com/users/nakeman/repos?per_page=100');
+        const data = await res.json();
+        setRepos(data);
+      }      
+      catch(err)
+      {
+        console.log(err)
+      }
     }
+    fetchData();
 
   }, [])
 
@@ -97,7 +101,7 @@ const PostList = ({data}) => {
 const PostItem = ({data}) => {
   return ( 
     <>
-      <a href={data.slug} className="post"><h3>{data.categories} | {data.title} </h3>  <time >{data.date}</time></a>
+      <a href={data.url} className="post"><h3>{data.categories} | {data.title} </h3>  <time >{data.date}</time></a>
       
     </>
    );
@@ -118,7 +122,7 @@ const PostCard = ({data}) => {
       <div className="img flex flex-col justify-center max-w-[50px]"><GatsbyImage image={data.heroimage?.childImageSharp.gatsbyImageData} /> </div>
       <div className="ml-8">
         <time className="font-mono font-thin text-xs text-gray-500">{data.date}</time>
-        <a href={data.slug} className="postcard text-xl font-normal"><h3> {data.title} </h3> </a>
+        <a href={data.url} className="postcard text-xl font-normal"><h3> {data.title} </h3> </a>
       </div>
       
     </div>
@@ -191,6 +195,7 @@ const StarIcon = () => {
 }
 
 function rawMarkdown2LogicalPost(MDArray,option = {}){
+  let blog_prefix = 'blog/';
   return MDArray.map( md => {
     let post = {};
     post.id = md.id;
@@ -198,6 +203,7 @@ function rawMarkdown2LogicalPost(MDArray,option = {}){
     post.categories = md.frontmatter.categories;
     post.date = md.frontmatter.date;
     post.slug = md.frontmatter.slug;
+    post.url = blog_prefix + md.frontmatter.slug;
     post.description = md.excerpt;
     post.heroimage = md.frontmatter.heroimage;
     post.tags = md.frontmatter.tags;
@@ -209,56 +215,9 @@ function rawMarkdown2LogicalPost(MDArray,option = {}){
 
 }
 
-export const projectsList = [
-  {
-    name: 'nakeman.cn',
-    date: '2023',
-    demo: 'http://nakeman.cn',
-    url: 'http://nakeman.cn',
-    description: 'My personal website build by Gatsby React Tailwind and Node.',
-    source:'https://github.com/nakeman/nakeman.cn',
-    document:'',
-    highlight: true,
-  },
-  {
-    name: 'youlike',
-    date: '2021',
-    description: 'An simple and easy online survey app.',
-    source: 'https://github.com/nakeman/youlike',
-    highlight: true,
-  },
-  {
-    name: 'linknote',
-    date: '2021',
-    description: 'A note-taking tool to help you study and research.',
-    source: 'https://github.com/nakeman/linknote',
-    highlight: true,
-  },
-  {
-    name: 'modular-web-frontend-webpack-js',
-    date: '2022',
-    demo: 'http://nakeman.cn',
-    url: 'http://nakeman.cn',
-    description: 'Web dev tutorial source on morden modularize method in : vanilla JS, React, and Vue.',
-    source:'https://github.com/nakeman/modular-web-frontend-webpack-js',
-    document:'',
-    highlight: true,
-  },
-  {
-    name: 'base-style-design-collections',
-    date: '2022',
-    demo: 'http://nakeman.cn',
-    url: 'http://nakeman.cn',
-    description: 'collecting Web UI css base style design examples',
-    source:'https://github.com/nakeman/base-style-design-collections',
-    document:'',
-    highlight: true,
-  },
-]
-
 export const pageQuery = graphql`
   query MyQuery {
-    latest: allMdx(limit: 10, sort: {frontmatter: {date: DESC}}) {
+    latest: allMarkdownRemark(limit: 10, sort: {frontmatter: {date: DESC}}) {
       nodes {
         frontmatter {
           slug
@@ -269,10 +228,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    featured: allMdx(
+    featured: allMarkdownRemark(
       limit: 10
       sort: {frontmatter: {date: DESC}}
-      filter: {frontmatter: {featured: {eq: "ture"}}}
+      filter: {frontmatter: {featured: {eq: true}}}
     ) {
       nodes {
         frontmatter {
