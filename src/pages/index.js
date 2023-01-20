@@ -5,6 +5,8 @@ import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 import './index.css'
 import { graphql } from "gatsby"
 import { projectsList } from '../common/projectdata'
+import { PostList } from '../components/PostList'
+import { rawMarkdown2LogicalPost } from '../common/utility'
 
 const IndexPage = ({data}) =>{
 
@@ -34,8 +36,8 @@ const IndexPage = ({data}) =>{
         <div className="index container mx-auto px-4">
           <div className="herox flex flex-col md:flex-row">
             <div className="hero mt-10 w-full md:w-1/2">
-              <h1 className="headline mb-4 md:mx-4 text-5xl">你好，朋友！</h1>
-              <div className="description text-lg md:text-xl md:mx-4">
+              <h1 className="headline mb-4 text-5xl">你好，朋友！</h1>
+              <div className="description text-lg md:text-xl">
                 <p>欢迎来到Nakeman.cn（Nake 裸 Man 人）， 这是我的个人博客，我是刘建文。</p>
                 <p>
                   我的职业是一名Web全栈开发者，我的业余兴趣比较广泛，对哲学，历史，教育等都有相当的关注。<em>做研究</em>  是我最大的兴趣，此外，我还热爱运动，“运动书生”
@@ -61,7 +63,7 @@ const IndexPage = ({data}) =>{
               </div>
               <div className="">--</div>
             </h2>
-            <PostList data={latestposts} />
+            <PostList data={latestposts} newspaper />
           </section>
           <section className="featuredpost">
             <h2 className="heading">
@@ -88,24 +90,24 @@ const IndexPage = ({data}) =>{
 export const Head = () => <Seo title="INDEX" />
 export default IndexPage
 
-const PostList = ({data}) => {
-  return ( 
-    <div className="postlist">
-      {
-        data.map( (item) =>  <PostItem key={item.id} data={item} />)
-      } 
-    </div>
-   );
-}
+// const PostList = ({data}) => {
+//   return ( 
+//     <div className="postlist">
+//       {
+//         data.map( (item) =>  <PostItem key={item.id} data={item} />)
+//       } 
+//     </div>
+//    );
+// }
  
-const PostItem = ({data}) => {
-  return ( 
-    <>
-      <a href={data.url} className="post"><h3>{data.categories} | {data.title} </h3>  <time >{data.date}</time></a>
+// const PostItem = ({data}) => {
+//   return ( 
+//     <>
+//       <a href={data.url} className="post"><h3>{data.categories} | {data.title} </h3>  <time >{data.date}</time></a>
       
-    </>
-   );
-}
+//     </>
+//    );
+// }
 const FeaturedList = ({data}) => {
   return ( 
     <div className="postlist grid  lg:grid-cols-2 xl:grid-cols-3">
@@ -192,27 +194,6 @@ const StarIcon = () => {
       ></path>
     </svg>
   )
-}
-
-function rawMarkdown2LogicalPost(MDArray,option = {}){
-  let blog_prefix = 'blog/';
-  return MDArray.map( md => {
-    let post = {};
-    post.id = md.id;
-    post.title = md.frontmatter.title;
-    post.categories = md.frontmatter.categories;
-    post.date = md.frontmatter.date;
-    post.slug = md.frontmatter.slug;
-    post.url = blog_prefix + md.frontmatter.slug;
-    post.description = md.excerpt;
-    post.heroimage = md.frontmatter.heroimage;
-    post.tags = md.frontmatter.tags;
-
-    return post;
-
-  }
-  )
-
 }
 
 export const pageQuery = graphql`

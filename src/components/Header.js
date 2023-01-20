@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.css';
+import { Link } from 'gatsby'
 
 let Header = ({ theme, onUpdateTheme }) => {
 
@@ -32,10 +33,10 @@ const Nav = () => {
   return(
     <nav className="nav flex flex-none  mb-1 mx-auto md:items-start md:mx-0">
       <ul class="flex navlist list-none">
-        <li><a class="navlist--item" href="/">文章</a></li>
-        <li><a class="navlist--item is-active" href="/blog/" aria-current="page">作品</a></li>
-        <li><a class="navlist--item" href="/talks/">简历</a></li>
-        <li><a class="navlist--item" href="/projects/">关于</a></li>
+        <li><Link to="/blog" className='navlist--item'activeClassName='is-active' partiallyActive='ture'>文章</Link></li>
+        <li><a class="navlist--item is-active" href="/projects" aria-current="page">项目</a></li>
+        <li><a class="navlist--item" href="/resume">简历</a></li>
+        <li><a class="navlist--item" href="/about">关于</a></li>
       </ul>
     </nav>
   )

@@ -97,7 +97,7 @@
 		--post-time-color: var(--gray-6);
 		--card-time-color: var(--gray-5);
 		--project-time-color: var(--font-color-muted);
-		--highlight-color: var(--green);
+		--highlight-color: var(--red);
 		--blockquote-background: var(--indigo-muted);
 		--file-background: #eee;
 		--inline-code-background-color: var(--gray-0);
@@ -143,8 +143,12 @@
 	}*/
 }
 
+@layer utilities {
+	.card-primary { @apply rounded bg-gray-100 p-4 m-1 }
+	.card-border { @apply rounded bg-white border-[1px] p-4 m-1}
+}
 @layer components{
-	/***** blogpost *********** */
+	/***** blogpost /blog/{slug} *********** */
 	div.post-sidebar-card ul
 	 {
 		-webkit-font-smoothing: auto;
