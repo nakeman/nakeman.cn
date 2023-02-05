@@ -1,33 +1,32 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import PageLayout from '../components/PageLayout'
+// import PageLayout from '../components/PageLayout'
 
 import Seo from "../components/Seo"
 import { PostIndexLayout } from '../components/PostIndexLayout'
 import { rawMarkdown2LogicalPost } from '../common/utility'
 import { PostList } from '../components/PostList'
 
-export default function Index({ data }) {
+export default function Index({ data,pageContext }) {
   let cateposts = rawMarkdown2LogicalPost(data.cateposts.nodes);
+  let { category } = pageContext
 
   return (
-    <PageLayout>
       <PostIndexLayout>
         <main className='blogindex'>
-          <section className='header flex'>
-            <h1> 分类 </h1>
+          <section className='header flex justify-end'>
+            <h1> 分类 | <sub className='text-gray-400'>{category}({data.cateposts.totalCount})</sub></h1>
           </section>
           <section className='px-2'>
             <PostList data={cateposts} showYears />
           </section>
         </main>
       </PostIndexLayout>
-    </PageLayout>
   )
 
 }
 
-export const Head = () => <Seo title="POST INDEX " />
+export const Head = ({pageContext}) => <Seo title={pageContext.category} />
 export const cateQuery = graphql`
   query cateQuery( $category: String ) {
     cateposts: allMarkdownRemark(

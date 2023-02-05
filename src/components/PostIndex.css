@@ -14,7 +14,7 @@ categroylist and tagpanel
 
 /* blogindex 它有自己的特殊的组件样式吗? 它是 postindexlayout 另一个子组件*/
 .postindex h1 {
-    @apply text-5xl font-bold;
+    @apply text-5xl font-bold dark:text-white;
 }
 
 /* postindexlayout 这个系列index组件的编程 中心， postindexsidebar 的通用样式 可这定义到这*/
@@ -27,7 +27,7 @@ categroylist and tagpanel
   /** 0 common headline */
   .post-index-sidebar h2 {
     color: var(--font-color-heading);
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     border: none;
     margin: 0 0 1rem;
     text-transform: uppercase;

@@ -70,3 +70,4 @@ yarn-error.log
 
 # blog post
 content/
+frontmatter.json

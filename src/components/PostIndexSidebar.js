@@ -30,7 +30,7 @@ export const PostIndexSidebar = () => {
 
   return (
     <aside className="post-index-sidebar w-full">
-      <div className="categorylist card-primary ">
+      <div className="categorylist card ">
         <h2>Categories</h2>
         <div className="categoris flex flex-col">
           {categories
@@ -39,7 +39,7 @@ export const PostIndexSidebar = () => {
               return (
                 <Link
                   key={category.name}
-                  to={`/categories/${category.name}`}
+                  to={`/blog/categories/${category.name}`}
                   className="category flex justify-between"
                   activeClassName="active"
                 >
@@ -51,14 +51,14 @@ export const PostIndexSidebar = () => {
         </div>
       </div>
 
-      <div className="tagpanel card-primary">
+      <div className="tagpanel card">
         <h2>Tags</h2>
         <div className="tags flex flex-wrap">
           {tags.map((tag) => {
             return (
               <Link
                 key={tag.name}
-                to={`/tags/${tag.name}`}
+                to={`/blog/tags/${tag.name}`}
                 className="tag"
                 activeClassName="active"
               >

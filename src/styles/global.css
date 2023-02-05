@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900');
-	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;700&family=Merriweather:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;700&family=Merriweather:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -73,7 +73,7 @@
 		--font-color-hero-heading: var(--gray-0);
 
 		/*link*/
-		--link: #4371f1;
+		--link: rgb(185 28 28);
 		--link-hover-color: #f1f2fd;
 
 		/* Borders */
@@ -86,8 +86,6 @@
 		--card-background-color: var(--gray-0);
 		--button-background-color: var(--gray-05);
 		--marker: var(--orange);
-		--link: var(--indigo);
-		--link-hover-color: var(--indigo-muted);
 		--navbar: var(--gray-1);
 		--navbar-border: var(--gray-2);
 		--navbar-color: var(--gray-8);
@@ -131,7 +129,7 @@
 	body {
 	  margin: 0;
 	  padding: 0;
-	  /*background: var(--background-color);*/
+	  background: var(--background-color);
 	}
 
 	a {
@@ -141,6 +139,20 @@
 /*	a:hover{
 		color: var(--link-hover-color); 
 	}*/
+
+  /* Blockquote */
+
+  blockquote {
+    margin: 1rem 0;
+    border-left: 6px solid #000;
+    margin-left: 0;
+    padding: 1.5rem;
+    background: var(--blockquote-background);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 500;
+  }
 }
 
 @layer utilities {
@@ -179,7 +191,13 @@
 
 	div.post-sidebar-card a{
 		@apply p-2 mr-1 font-mono text-sm border rounded-[5px] text-gray-800 hover:border-black;
+		@apply dark:text-white dark:border-black dark:hover:border-white
 	  }
+
+	  /***** other page /{page} *********** */
+	section .header {
+		@apply dark:text-white
+	}
 }
 
 

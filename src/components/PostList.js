@@ -35,7 +35,7 @@ export const PostList = ({
     ))
   } else {
     return (
-      <div className={props.newspaper ? 'posts newspaper' : 'posts'}>
+      <div class='post'>
         {data.map((node) => (
           <PostItem
             key={node.id}
@@ -52,21 +52,21 @@ export const PostList = ({
   }
 }
 
-const PostItem = ({ data, prefix, newspaper }) => {
-    let formattedDate
+const PostItem = ({ data, prefix }) => {
+    //let formattedDate
   
-    if (data.date) {
-      if (!newspaper) {
-        const dateArr = data.date.split(' ')
-        dateArr.pop()
+    // if (data.date) {
+    //   if (!newspaper) {
+    //     const dateArr = data.date.split(' ')
+    //     dateArr.pop()
   
-        dateArr[0] = dateArr[0].slice(0, 3)
-        formattedDate = dateArr.join(' ').slice(0, -1)
-      } else {
-        // formattedDate = getFormattedDate(node.date)
-        //console.log(node.date)
-      }
-    }
+    //     dateArr[0] = dateArr[0].slice(0, 3)
+    //     //formattedDate = dateArr.join(' ').slice(0, -1)
+    //   } else {
+    //     // formattedDate = getFormattedDate(node.date)
+    //     //console.log(node.date)
+    //   }
+    // }
   
     return (
       <Link
@@ -80,15 +80,15 @@ const PostItem = ({ data, prefix, newspaper }) => {
     )
   }
 
-function getFormattedDate(date) {
-    const dateArr = date.split(' ')
-    if (dateArr[1].startsWith('0')) {
-      dateArr[1] = dateArr[1].slice(1, 2)
-    } else {
-      dateArr[1] = dateArr[1].slice(0, 2)
-    }
-    dateArr[1] += ','
+// function getFormattedDate(date) {
+//     const dateArr = date.split(' ')
+//     if (dateArr[1].startsWith('0')) {
+//       dateArr[1] = dateArr[1].slice(1, 2)
+//     } else {
+//       dateArr[1] = dateArr[1].slice(0, 2)
+//     }
+//     dateArr[1] += ','
   
-    return dateArr.join(' ')
-  }
+//     return dateArr.join(' ')
+//   }
   

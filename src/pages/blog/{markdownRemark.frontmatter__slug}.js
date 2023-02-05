@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql,Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import PageLayout from "../../components/PageLayout"
+// import PageLayout from "../../components/PageLayout"
 import Seo from "../../components/Seo"
 
 export default function BlogPostTemplate({
@@ -12,13 +12,12 @@ export default function BlogPostTemplate({
   const post = rawMarkdown2LogicalPost(markdownRemark);
 
   return (
-    <PageLayout>
       <div className="blogpost container flex flex-col md:flex-row gap-4 mx-auto px-4">
         <aside className="postmeta mt-1 md:mt-10 basis-3/12 ">
           <div> <GatsbyImage className="mx-auto my-3" image={post.heroimage?.childImageSharp.gatsbyImageData} /> </div>
           <div className="post-sidebar-card card flex md:block rounded bg-gray-100 p-4 m-1">
             <h2 className="">Post Meta</h2>
-            <ul className="">
+            <ul className="dark:text-white">
               <li>发表于 {post.date}</li>
             </ul>
 
@@ -26,11 +25,15 @@ export default function BlogPostTemplate({
               <div>
                 <h2>Category</h2>
                 <ul>
-                  <li>
-                    <Link to={`/categories/${post.categories}`}>
-                      {post.categories}
-                    </Link>
-                  </li>
+                  {post.categories.map( cat => {
+                    return(
+                    <li>
+                      <Link to={`/blog/categories/${cat}`}>
+                        {cat}
+                      </Link>
+                    </li>
+                    )
+                  })}
                 </ul>
               </div>
             )}
@@ -41,7 +44,7 @@ export default function BlogPostTemplate({
                 return (
                   <Link
                     key={tag}
-                    to={`/tags/${tag}`}
+                    to={`/blog/tags/${tag}`}
                     className="tag"
                     activeClassName="active"
                   >
@@ -52,17 +55,16 @@ export default function BlogPostTemplate({
             </div>
           </div>
         </aside>
-        <main className="post flex-auto mt-10 prose lg:prose-xl">
+        <main className="post flex-auto mt-10 prose lg:prose-xl dark:prose-invert">
           <div className="">
             <h1>{post.title}</h1>
             <div className="" dangerouslySetInnerHTML={{ __html: post.html }} />
           </div>
         </main>
       </div>
-    </PageLayout>
   )
 }
-export const Head = () => <Seo title="INDEX" />
+export const Head = ({data}) => <Seo title={data.markdownRemark.frontmatter.title} />
 export const pageQuery = graphql`
   query($id: String!) {
     markdownRemark(id: { eq: $id }) {

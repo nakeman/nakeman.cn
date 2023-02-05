@@ -83,7 +83,7 @@ const createPages = async ({ graphql, actions }) => {
   const tagList = Array.from(tagSet)
   tagList.forEach((tag) => {
     createPage({
-      path: `/tags/${tag}/`,
+      path: `/blog/tags/${tag}/`,
       component: tagindex,
       context: {
         tag,
@@ -98,7 +98,7 @@ const createPages = async ({ graphql, actions }) => {
   const categoryList = Array.from(categorySet)
   categoryList.forEach((category) => {
     createPage({
-      path: `/categories/${category}/`,
+      path: `/blog/categories/${category}/`,
       component: categoryindex,
       context: {
         category,

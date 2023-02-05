@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import PageLayout from "../components/PageLayout"
+// import PageLayout from "../components/PageLayout"
 import Seo from "../components/Seo"
 import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 import './index.css'
-import { graphql } from "gatsby"
+import { graphql,Link } from "gatsby"
 import { projectsList } from '../common/projectdata'
 import { PostList } from '../components/PostList'
 import { rawMarkdown2LogicalPost } from '../common/utility'
@@ -30,43 +30,37 @@ const IndexPage = ({data}) =>{
   
   let latestposts = rawMarkdown2LogicalPost(data.latest.nodes);
   let featuredposts = rawMarkdown2LogicalPost(data.featured.nodes);
+  let highlightedProjects = projectsList.filter(project => project.highlight == true)
     
     return (
-      <PageLayout>
-        <div className="index container mx-auto px-4">
+        <div className="siteindex container mx-auto px-4">
           <div className="herox flex flex-col md:flex-row">
             <div className="hero mt-10 w-full md:w-1/2">
               <h1 className="headline mb-4 text-5xl">你好，朋友！</h1>
-              <div className="description text-lg md:text-xl">
+              <div className="description text-lg md:text-xl dark:text-white">
                 <p>欢迎来到Nakeman.cn（Nake 裸 Man 人）， 这是我的个人博客，我是刘建文。</p>
                 <p>
-                  我的职业是一名Web全栈开发者，我的业余兴趣比较广泛，对哲学，历史，教育等都有相当的关注。<em>做研究</em>  是我最大的兴趣，此外，我还热爱运动，“运动书生”
+                  我的职业是一名Web全栈开发者。写代码外，我有好一些业余兴趣，尤其对哲学，历史，教育等都有相当的研究兴趣。<em>做研究</em>  是我最大的兴趣，此外，我还热爱运动，“运动书生”
                   是我的一个标签，可用一名话形容我是个什么人：
                 </p>
-                <blockquote>
+                <blockquote className='dark:border-white '>
                   一个不会打毛毛球的书生，不是一个好的程序员。
-                </blockquote>
-                <p>
-                  本博客主要记录了 我在 <em>Web开发</em> 领域的
-                  学习和研究经验，当然也有相当的技术翻译，和非编程文章，也有我的成长记录。作为了半路出师的开发者，Github
-                  上也开始发布一些公开的代码。    
-                </p>
-                <button type="button" class="inline-block px-6 py-2 border border-gray-600 text-gray-600 font-medium text-normal leading-tight uppercase rounded hover:bg-black hover:bg-opacity-95 hover:text-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out">更多...</button>
+                </blockquote>                
               </div>
             </div>
             <div className="decoration w-full md:w-1/2 p-5 flex justify-center"><StaticImage src="../images/shiyao.png" layout="fixed" width={300} objectFit="fill" alt="留一个彩蛋，小女孩是一个豆瓣友邻的作品，她叫sy" ></StaticImage></div>
           </div>
           <section className="latestpost">
-            <h2 className="heading">
+            <h2 className="sectionHeader">
               <div>
                 <div className="title">最新文章</div>              
               </div>
               <div className="">--</div>
             </h2>
-            <PostList data={latestposts} newspaper />
+            <PostList data={latestposts} />
           </section>
           <section className="featuredpost">
-            <h2 className="heading">
+            <h2 className="sectionHeader">
               <div>
                 <div className="title">推荐文章</div>              
               </div>
@@ -75,39 +69,20 @@ const IndexPage = ({data}) =>{
             <FeaturedList data={featuredposts} />
           </section>
           <section className="projects">
-            <h2 className="heading">
+            <h2 className="sectionHeader">
               <div>
                 <div className="title">开源项目</div>              
               </div>
               <div className="">--</div>
             </h2>
-            <ProjectList data={projectsList} repos={repos} />
+            <ProjectList data={highlightedProjects} repos={repos} />
           </section>
         </div>
-      </PageLayout>
     )
 }
-export const Head = () => <Seo title="INDEX" />
+export const Head = ({data}) => <Seo title={data.siteMeta.siteMetadata.description} />
 export default IndexPage
 
-// const PostList = ({data}) => {
-//   return ( 
-//     <div className="postlist">
-//       {
-//         data.map( (item) =>  <PostItem key={item.id} data={item} />)
-//       } 
-//     </div>
-//    );
-// }
- 
-// const PostItem = ({data}) => {
-//   return ( 
-//     <>
-//       <a href={data.url} className="post"><h3>{data.categories} | {data.title} </h3>  <time >{data.date}</time></a>
-      
-//     </>
-//    );
-// }
 const FeaturedList = ({data}) => {
   return ( 
     <div className="postlist grid  lg:grid-cols-2 xl:grid-cols-3">
@@ -120,11 +95,11 @@ const FeaturedList = ({data}) => {
  
 const PostCard = ({data}) => {
   return ( 
-    <div className="flex rounded bg-white border-[1px] p-4 m-1 relative">
+    <div className="flex rounded bg-white border-[1px] p-4 m-1 relative dark:border-black dark:bg-black ">
       <div className="img flex flex-col justify-center max-w-[50px]"><GatsbyImage image={data.heroimage?.childImageSharp.gatsbyImageData} /> </div>
       <div className="ml-8">
-        <time className="font-mono font-thin text-xs text-gray-500">{data.date}</time>
-        <a href={data.url} className="postcard text-xl font-normal"><h3> {data.title} </h3> </a>
+        <time className="font-mono font-thin text-xs text-gray-500 dark:text-gray-300">{data.date}</time>
+        <Link to={data.url} className="postcard post text-xl font-normal dark:text-white"><h3> {data.title} </h3> </Link>
       </div>
       
     </div>
@@ -143,7 +118,7 @@ const ProjectList = ({data,repos}) => {
  
 const ProjectCard = ({data,repos}) => {
   return ( 
-    <div className="flex flex-col rounded bg-gray-100 p-4 m-1">
+    <div className="flex flex-col card">
       <div className=" relative ml-5">
           <div className="absolute right-1 top-1 stars ">
                     {repos.find((repo) => repo.name === data.name) && (
@@ -162,19 +137,16 @@ const ProjectCard = ({data,repos}) => {
                     )} 
           </div>
           <div>
-            <time className="font-mono font-thin text-xs text-gray-500">{data.date}</time>
+            <time className="year">{data.date}</time>
           </div>
         
-        <a href={data.url} className="prjectcard text-xl font-normal"><h3>{data.name} </h3> </a>
+        <a href={data.source} className="prjectname"><h3>{data.name} </h3> </a>
         <sub> {data.description}</sub>
       </div>
       <div className="link ml-3 p-2 mx-5 mt-auto">
-        { data.demo &&(
-        <a href={data.demo}>Demo</a> 
-        )
-        }
-        <a href={data.document}>相关文章</a> 
-        <a href={data.source}>源码</a>
+      { data.demo &&( <a href={data.demo}>Demo</a> )}
+        { data.document &&( <Link to={data.document}>相关文章</Link> )}
+        { data.source &&( <a href={data.source}>源码</a>)}
       </div>
       
     </div>
@@ -230,6 +202,14 @@ export const pageQuery = graphql`
         }
         id
         excerpt
+      }
+    }
+    siteMeta: site {
+      siteMetadata {
+        author
+        description
+        siteUrl
+        title
       }
     }
   }

@@ -9,10 +9,10 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `刘建文 ｜Nakeman.CN`,
-    description: ``,
+    title: `刘建文 ｜Nakeman.cn`,
+    description: `Web全栈开发者的技术博客`,
     author: `Kemin lau`,
-    siteUrl: `http://nakeman.cn/`,
+    siteUrl: `https://nakeman.cn/`,
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -45,6 +45,12 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`${__dirname}/src/components/PageLayout.js`),
       },
     },
   ],
