@@ -1,0 +1,114 @@
+
+/* ==== post index session ==== */
+
+/* =================================================================
+    Component static query hook
+	|
+categroylist and tagpanel
+	L postindexsidebar
+		L postindexlayout
+			L blogindex
+			E categoryindex
+			E tagsindex 
+=====*****/
+
+/* blogindex 它有自己的特殊的组件样式吗? 它是 postindexlayout 另一个子组件*/
+.postindex h1 {
+    @apply text-5xl font-bold dark:text-white;
+}
+
+/* postindexlayout 这个系列index组件的编程 中心， postindexsidebar 的通用样式 可这定义到这*/
+
+/* postindexsidebar 这是中心组件，包含两个“不独立”的子组件 */
+
+  
+  /* .post-index-sidebar { } */
+
+  /** 0 common headline */
+  .post-index-sidebar h2 {
+    color: var(--font-color-heading);
+    font-size: 1.2rem;
+    border: none;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  
+  /** 1 .categorylist{} */
+
+  /*** catagories link item */
+  .categorylist a {
+    background-color: transparent;
+    color: var(--font-color-base);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.1rem 0.5rem;
+    margin: 0 -0.3rem;
+    border-radius: var(--border-radius);
+  }
+  
+  .categorylist a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--highlight-color);
+    text-decoration: none;
+  }
+
+  .category { /* category container */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+  }
+
+  .category .name {
+    font-size: 0.9rem;
+  }
+
+  .category .count {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--font-color-muted);
+    font-family: var(--font-family-monospace);
+  }
+  
+  a.category.active {
+    color: var(--highlight-color);
+  }
+  
+  .category:hover .count,
+  a.category.active .count {
+    color: var(--highlight-color);
+  }
+
+
+  /** 2 .tagpanel {} */
+  
+  .tags { /* tags container */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  a.tag {  /* tag */
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--font-color-base);
+    background: var(--button-background-color) !important;
+    text-decoration: none;
+  }
+  
+  a.tag:hover {
+    color: var(--font-color-bright);
+    border-color: var(--highlight-color);
+    text-decoration: none;
+  }
+  
+  a.tag.active {
+    color: var(--highlight-color);
+    border-color: var(--highlight-color);
+    font-weight: 600;
+  }

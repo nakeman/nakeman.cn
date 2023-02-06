@@ -1,0 +1,28 @@
+/* @layer components{ */
+    .header{
+        @apply flex flex-col justify-between w-full pt-5  md:flex-row md:mt-0 md:px-5 md:py-3 ;
+    }
+ 
+ /*== ==*/
+    .brand {
+        @apply flex flex-none mx-auto  mb-1 md:items-start md:mx-0 text-gray-600 text-2xl font-thin;
+    }
+    .split {
+        @apply after:content-[''] after:h-8 after:mx-2 after:w-[1px] after:bg-gray-800;
+    }
+    .brand--siteurl  {
+      @apply hover:text-gray-600;
+    }
+ /*== ==*/
+    .nav{
+        @apply text-xl font-thin md:text-2xl;
+    }
+    .navlist--item {
+        @apply text-gray-700 mx-2 pt-2 hover:font-light;
+      }
+    .navlist--item.is-active {
+        @apply text-black font-normal;
+        border-bottom: #111 3px solid;
+    }
+ 
+ /* } */

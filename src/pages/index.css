@@ -1,0 +1,107 @@
+/* site index  == /index */
+
+/* 
+siteindex( has 4 sections )
+  L herox(2)
+  E latestposts
+    L postlist (->)
+      L postitem
+  E featuredposts
+    L postcard
+  E projects
+    L projectcard 
+    */
+
+/** index ********************************/
+.siteindex {
+   font-family: var(--font-family-base);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+
+   line-height: 1.6;
+   font-size: 16px;
+   font-weight: 300;
+   font-kerning: normal;
+ }
+
+ a:hover h3 {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+}
+
+ /** 0 section header ********************************/
+
+h2.sectionHeader {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;  
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  padding: 0;
+  @apply dark:text-white
+}
+
+h2.sectionHeader .title {
+  font-size: 1.7rem;
+  margin-bottom: 0;
+  font-family: var(--font-family-base);
+  font-weight: 700;
+}
+
+@media screen and (min-width: 700px) {
+  h2.sectionHeader {
+    gap: 2rem;
+  }
+
+  h2.sectionHeader .title {
+    font-size: 2rem;
+  }
+}
+
+
+ /** 1 herox ********************************/
+ .herox {
+    /* padding: 1rem 0 0; */
+    position: relative;
+    overflow: hidden;
+  }
+
+.headline {
+    /* font-size: 2.4rem; */
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--font-color-heading);
+  }
+
+ .description > p {
+    @apply pb-3;
+  }
+
+
+  
+/** 2 LatestPosts ********************************/
+
+
+/******* 3 featured post **/
+
+/******* 4 project list**/
+
+.card{
+  @apply rounded bg-gray-100 p-4 m-1 dark:bg-neutral-800 dark:border-gray-500 dark:text-white
+}
+
+a.prjectname h3{
+  @apply  text-xl font-normal text-black dark:text-white
+}
+
+div.link a{
+  @apply p-2 mr-1 font-mono text-sm border rounded-[5px] text-gray-800 hover:border-black;
+  @apply dark:text-white dark:border-black dark:hover:border-white
+}
+.card time.year{
+  @apply font-mono font-thin text-xs text-gray-500
+}
+.card p.description{
+  @apply py-2 text-lg font-thin text-gray-700 dark:text-gray-50
+}
