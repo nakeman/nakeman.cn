@@ -1,7 +1,7 @@
 import * as React from "react"
 import Viewport from "./ViewPort"
 
-const ModelLayout = ({children}) =>{
+const DialogLayout = ({children}) =>{
     
     return(
         <Viewport>
@@ -10,4 +10,4 @@ const ModelLayout = ({children}) =>{
 
     )
 }
-export default ModelLayout
+export default DialogLayout
