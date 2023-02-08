@@ -15,7 +15,7 @@ export default function BlogPostTemplate({
       <div className="blogpost container flex flex-col md:flex-row gap-4 mx-auto px-4">
         <aside className="postmeta mt-1 md:mt-10 basis-3/12 ">
           <div> <GatsbyImage className="mx-auto my-3" image={post.heroimage?.childImageSharp.gatsbyImageData} /> </div>
-          <div className="post-sidebar-card card flex md:block rounded bg-gray-100 p-4 m-1">
+          <div className="post-sidebar-card card md:block rounded bg-gray-100 p-4 m-1">
             <h2 className="">Post Meta</h2>
             <ul className="dark:text-white">
               <li>发表于 {post.date}</li>

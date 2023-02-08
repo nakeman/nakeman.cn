@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet"
  * @param {*} param0 
  */
 const PageLayout = ({children}) =>{
-    const [theme, setTheme] = useState('dark')
+    const [theme, setTheme] = useState('light')
     const onUpdateTheme = () => {
       const newTheme = theme === 'dark' ? 'light' : 'dark'
       

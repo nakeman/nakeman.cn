@@ -51,7 +51,7 @@ export const PostIndexSidebar = () => {
         </div>
       </div>
 
-      <div className="tagpanel card">
+      <div className="tagpanel hidden md:block card">
         <h2>Tags</h2>
         <div className="tags flex flex-wrap">
           {tags.map((tag) => {
