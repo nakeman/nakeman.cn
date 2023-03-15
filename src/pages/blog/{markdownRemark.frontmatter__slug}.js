@@ -3,6 +3,9 @@ import { graphql,Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 // import PageLayout from "../../components/PageLayout"
 import Seo from "../../components/Seo"
+import { useEffect } from "react"
+import { useState } from "react"
+import Scrollspy from 'react-scrollspy'
 
 export default function BlogPostTemplate({
   data, // this prop will be injected by the GraphQL query below.
@@ -10,9 +13,41 @@ export default function BlogPostTemplate({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   // const { frontmatter, html } = markdownRemark
   const post = rawMarkdown2LogicalPost(markdownRemark);
+  const [sectionids,setIds] = useState([])
+  const [sectionItems,setItems] = useState([])
+  const scrollspy = React.useRef(null)
 
+  // load the TOC 
+  useEffect(() =>{
+    let hs = document.querySelectorAll('#blogpost h2,#blogpost h3');
+    let ids = [];
+    let items = [];
+    // console.log(scrollspy)
+    hs.forEach(h =>{
+      ids.push(h.id);
+      if(h.tagName =='H3')
+        items.push({id:h.id,isSubitem:true})
+      else
+        items.push({id:h.id,isSubitem:false})
+    })  
+    setIds(ids)
+    setItems(items)    
+  },[])
+
+  //TOFIX：纯粹搞笑 首次加载 scrollspy 需要一次点击 
+  useEffect(() =>{
+    scrollspy.current.click();
+  },[])
+
+  // load smooth-scroll
+  useEffect(() =>{
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line global-require
+      require('smooth-scroll')('a[href*="#"]')
+    }
+  })
   return (
-      <div className="blogpost container flex flex-col md:flex-row gap-4 mx-auto px-4">
+      <div  className="blogpost container flex flex-col md:flex-row gap-4 mx-auto px-4"><a ref={scrollspy} className="hidden" href="#start_scrollspy"></a>
         <aside className="postmeta mt-1 md:mt-10 basis-3/12 ">
           <div> <GatsbyImage className="mx-auto my-3" image={post.heroimage?.childImageSharp.gatsbyImageData} /> </div>
           <div className="post-sidebar-card card md:block rounded bg-gray-100 p-4 m-1">
@@ -54,9 +89,19 @@ export default function BlogPostTemplate({
               })}
             </div>
           </div>
+          <div className="toc card sticky top-3 md:block rounded bg-gray-100 p-4 m-1 mt-2">
+            <h2 className=" text-center "> -- 目录 -- </h2>
+            <Scrollspy items={sectionids} componentTag='section' currentClassName="active">
+            { sectionItems.map( item => {
+              return <li className={item.isSubitem?'subitem':''}><a href={'#'+item.id}>{item.id}</a></li>
+            })
+            }
+              {/* <div className="tocdiv" dangerouslySetInnerHTML={{ __html: post.toc }} /> */}
+            </Scrollspy>
+          </div>
         </aside>
         <main className="post flex-auto mt-10 prose lg:prose-xl dark:prose-invert">
-          <div className="">
+          <div id='blogpost' className="">
             <h1>{post.title}</h1>
             <div className="" dangerouslySetInnerHTML={{ __html: post.html }} />
           </div>
@@ -82,6 +127,7 @@ export const pageQuery = graphql`
           }
         }
       }
+      tableOfContents
     }
   }
 `
@@ -100,6 +146,8 @@ function rawMarkdown2LogicalPost(md,option = {}){
     post.description = md.excerpt;
     post.heroimage = md.frontmatter.heroimage;
     post.tags = md.frontmatter.tags;
+    post.toc = md.tableOfContents;
+
 
     return post;
 
