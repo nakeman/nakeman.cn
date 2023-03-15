@@ -12,7 +12,7 @@ const AboutPage = ({data}) =>{
               <h1 className="mb-3 text-5xl font-bold">关于</h1>
             </section>
           </div>
-          <section className="flex flex-col xl:flex-row gap-4 font-light leading-6 ">
+          <section className="flex flex-col gap-4 font-light leading-6 ">
             <StaticImage
               className="mx-auto"
               src="../images/qianli.png"
