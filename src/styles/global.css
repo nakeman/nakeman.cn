@@ -194,6 +194,34 @@
 		@apply dark:text-white dark:border-black dark:hover:border-white
 	  }
 
+	div h2{
+		@apply font-bold text-xl justify-center;
+	}	  
+
+	div.toc ul
+	  {
+		 -webkit-font-smoothing: auto;
+		 line-height: 1.625;
+		 margin-top: 0;
+		 margin-bottom: 1.5rem;
+ 
+		 padding-left: 1.5rem;
+		 list-style-type: disc;
+		 @apply text-sm text-gray-600;
+	 }
+
+	div.toc a{
+		@apply mr-1 font-mono text-sm text-gray-800 hover:border-black hover:border-b-2 hover:font-bold;
+		@apply dark:text-white dark:border-black dark:hover:border-white		
+
+	}
+	div.toc li.active{
+		@apply  border-black border-b-2 font-bold;
+	}
+	div.toc li.subitem{
+		@apply ml-5 list-none;
+	}
+
 	  /***** other page /{page} *********** */
 	section .header {
 		@apply dark:text-white
