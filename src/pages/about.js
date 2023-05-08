@@ -25,6 +25,7 @@ const AboutPage = ({data}) =>{
                 学习和研究经验，当然也有相当的技术翻译，和非编程文章，也有我的成长记录。作为了半路出家的开发者，Github
                 上也开始发布一些公开的代码。
               </p>
+              <p className="mt-3 text-red-600 text-lg md:text-xl">提醒：本博客所有文章均为本人原创，转载请署名。</p>
               <p>
                 <hr className="my-10" />
               </p>

@@ -15,7 +15,6 @@ export default function BlogPostTemplate({
   const post = rawMarkdown2LogicalPost(markdownRemark);
   const [sectionids,setIds] = useState([])
   const [sectionItems,setItems] = useState([])
-  const scrollspy = React.useRef(null)
 
   // load the TOC 
   useEffect(() =>{
@@ -34,20 +33,16 @@ export default function BlogPostTemplate({
     setItems(items)    
   },[])
 
-  //TOFIX：纯粹搞笑 首次加载 scrollspy 需要一次点击 
-  useEffect(() =>{
-    scrollspy.current.click();
-  },[])
 
   // load smooth-scroll
   useEffect(() =>{
     if (typeof window !== 'undefined') {
       // eslint-disable-next-line global-require
-      require('smooth-scroll')('a[href*="#"]')
+      require('smooth-scroll')('a[href*="#"]',{easing: 'easeOutQuint'})
     }
   })
   return (
-      <div  className="blogpost container flex flex-col md:flex-row gap-4 mx-auto px-4"><a ref={scrollspy} className="hidden" href="#start_scrollspy"></a>
+      <div  className="blogpost container flex flex-col md:flex-row gap-4 mx-auto px-4">
         <aside className="postmeta mt-1 md:mt-10 basis-3/12 ">
           <div> <GatsbyImage className="mx-auto my-3" image={post.heroimage?.childImageSharp.gatsbyImageData} /> </div>
           <div className="post-sidebar-card card md:block rounded bg-gray-100 p-4 m-1">
